@@ -4,6 +4,8 @@ import { PiStudentBold } from "react-icons/pi";
 import { MdOutlineSecurity } from "react-icons/md";
 import { GiSecurityGate } from "react-icons/gi";
 import { IoLogOut } from "react-icons/io5";
+import { RiPagesFill } from "react-icons/ri";
+
 import { Link } from "react-router-dom"
 const NavBar = () => {
   const [select, setSelect] = useState('dashboard')
@@ -33,7 +35,7 @@ const NavBar = () => {
           Security
         </Link>
         <Link to={"passes"} className={`${select == "Passes" ? "bg-white text-primary border-slate-700 border-r-4 " : ""} flex items-center w-full  py-2 ps-4  gap-3 cursor-pointer`} onClick={() => setSelect("Passes")}>
-          <FaChartSimple />
+          <RiPagesFill />
           Passes
         </Link>
       </div>
