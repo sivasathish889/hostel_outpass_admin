@@ -2,14 +2,8 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div>
-      <div className="icon flex justify-between items-center bg-[rgb(11,121,135)] h-20">
-        <h1 className='text-center px-5'>Hostal Outpass</h1>
-
-      <div className="profile px-5">
-        <div className="profile_pic">
-
-        </div>
+    <div className='flex-1 w-full'>
+      <div className="icon flex justify-between items-center bg-[#D6D6D6]  h-24">
         <div className="admin_name">
           Shiva
         </div>
@@ -18,7 +12,6 @@ const Header = () => {
         </div>
       </div>
     </div>
-      </div>
   )
 }
 
