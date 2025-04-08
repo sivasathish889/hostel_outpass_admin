@@ -9,7 +9,6 @@ import { RiPagesFill } from "react-icons/ri";
 import { Link } from "react-router-dom"
 const NavBar = () => {
   const [select, setSelect] = useState('dashboard')
-  console.log(select);
 
   return (
     <div className='w-52 rounded-sm bg-primary h-full text-white '>
