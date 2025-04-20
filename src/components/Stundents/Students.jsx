@@ -6,6 +6,10 @@ import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-ico
 let itemsPerPage = 1;
 
 const Students = () => {
+  const [searchQuery, setsearchQuery] = useState("")
+  const [dateQuery, setDateQuery] = useState("")
+  const [departmentQuery, setDepartmentQuery] = useState("")
+
   const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
   const [itemOffset, setItemOffset] = useState(0);
@@ -24,11 +28,11 @@ const Students = () => {
     <>
       <div className='filters w-full'>
         <div className="search-bar m-3 mx-5 flex justify-end gap-5">
-          <input type="search" placeholder='Search' className='w-60 text-xs p-2 h-10 border-2 border-primary rounded-lg' />
+          <input type="search" placeholder='Search' className='w-60 text-xs p-2 h-10 border-2 border-primary rounded-lg' onChange={(e)=>setsearchQuery(e.target.value)}/>
           <div className='flex'>
-            <input type="date" className=' p-2 border-2 border-primary rounded-lg h-10' />
+            <input type="date" className=' p-2 border-2 border-primary rounded-lg h-10' onChange={(e)=>setDateQuery(e.target.value)}/>
           </div>
-          <select name="year" id="" className='p-2 px-4 border-2 border-primary rounded-lg h-10'>
+          <select name="year" id="" className='p-2 px-4 border-2 border-primary rounded-lg h-10' onChange={(e) => setDepartmentQuery(e.target.value)}>
             <option value="">--Select Year-- </option>
             <option value="1">I</option>
             <option value="2">II</option>
@@ -39,7 +43,7 @@ const Students = () => {
       </div>
 
       <div className='m-8 '>
-        <StudentList />
+        <StudentList searchQuery={searchQuery} dateQuery={dateQuery} departmentQuery={departmentQuery} />
         <ReactPaginate
           breakLabel="..."
           nextLabel={<MdKeyboardDoubleArrowRight color='white' />}
