@@ -1,22 +1,71 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import EditModal from './EditModal';
+import swal from "sweetalert"
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const PassDetails = () => {
+  const navigate = useNavigate()
   const data = useLocation().state
   const [editOpen, setEditOpen] = useState(false);
   const handleEditOpen = () => setEditOpen(true);
   const handleEditClose = () => setEditOpen(false);
 
+  const handleDelete = async (id) => {
+    console.log(id)
+    swal({
+      title: "Are you sure?",
+      text: "Are you sure that you want to update the data?",
+      icon: "warning",
+      closeOnEsc: true,
+      closeOnClickOutside: true,
+      buttons: ["Cancel", "Confirm"]
+    })
+      .then(async (willDelete) => {
+        if (willDelete) {
+          try {
+            await axios.delete(`/deletePass/${id}`).then((data) => {
+              if (data.data.success) {
+                toast.success(data.data.message, {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+                navigate("/passes")
+              }
+              else {
+                toast.success(data.data.message, {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                });
+              }
+            })
+          } catch (error) {
+            console.log(error.message)
+          }
+        }
+      });
+  }
 
-  console.log(data)
   return (
     <div className='m-10 overflow-scroll h-[78vh]'>
       <div className="header flex justify-between bg-primary p-3 roundend-md sticky top-0">
         <div className="name text-xl text-white">{data.name}</div>
         <div className="action space-x-3">
           {/* <button className='bg-green-700 text-white py-1 rounded-md px-6 border border-black cursor-pointer' onClick={handleEditOpen}>Edit </button> */}
-          <button className='bg-red-800 text-white py-1 rounded-md px-6 border border-black cursor-pointer'>Delete </button>
+          <button className='bg-red-800 text-white py-1 rounded-md px-6 border border-black cursor-pointer' onClick={() => handleDelete(data._id)}>Delete </button>
         </div>
       </div>
 

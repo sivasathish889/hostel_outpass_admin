@@ -123,7 +123,7 @@ const StudentList = (props) => {
           <div className="p-1.5 w-full inline-block align-middle">
             <div className="overflow-hidden border rounded-lg">
               <table className="min-w-full divide-y divide-gray-200 border">
-                <thead className="bg-gray-50 ">
+                <thead className="bg-gray-200 ">
                   <tr className=''>
                     {['No', "Register Number", "Name", "E-mail", "Phone No", "Year", "Department", "District", "Action"].map((el, index) => {
                       return <th

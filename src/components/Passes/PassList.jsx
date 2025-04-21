@@ -53,7 +53,6 @@ const PassList = () => {
                                     draggable: true,
                                     progress: undefined,
                                     theme: "light",
-                                    transition: Bounce,
                                 });
                             }
                             else {
@@ -66,10 +65,8 @@ const PassList = () => {
                                     draggable: true,
                                     progress: undefined,
                                     theme: "light",
-                                    transition: Bounce,
                                 });
                             }
-                            // fetchData()
                         })
                     } catch (error) {
                         console.log(error.message)
@@ -141,7 +138,7 @@ const PassList = () => {
                     </div>
                 }
             </div>
-            <EditModal handleEditClose={handleEditClose} editOpen={editOpen} setEditOpen={setEditOpen} />
+            <EditModal handleEditClose={handleEditClose} editOpen={editOpen} setEditOpen={setEditOpen}  />
         </div>
     )
 }

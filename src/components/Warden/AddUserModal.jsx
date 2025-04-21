@@ -27,7 +27,6 @@ const AddUserModal = (props) => {
             "gender": e.target.gender.value,
             "password": e.target.password.value
         }
-        console.log(body)
         await axios.post("/createWarden", body).then((res) => {
             if (res.data.success) {
                 toast.success(res.data.message, {
