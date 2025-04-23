@@ -1,4 +1,3 @@
-import React from 'react'
 import PassList from './PassList'
 
 const Passes = () => {

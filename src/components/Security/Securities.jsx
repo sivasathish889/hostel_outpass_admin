@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import SecurityList from './SecurityList'
 import { FaPlus } from 'react-icons/fa'
 import AddUserModal from './AddUserModal'

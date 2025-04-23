@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuth } from './AuthProvider'
 import { Outlet, useNavigate } from 'react-router-dom'
 

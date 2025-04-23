@@ -1,4 +1,3 @@
-import React from 'react'
 import { LineWave } from 'react-loader-spinner'
 
 const Loader = ({visible}) => {
