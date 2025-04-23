@@ -1,5 +1,7 @@
+import { useAuth } from "../../context/AuthProvider"
 
 const Header = () => {
+  const {userData} = useAuth()
   return (
     <div className='flex-1 w-full'>
       <div className="icon flex justify-between items-center bg-[#D6D6D6]  h-24">
@@ -10,7 +12,7 @@ const Header = () => {
             <img src="https://placehold.co/400x400/orange/white" alt="" height={50} width={50} className='rounded-full max-w-6xl min-w-12' />
             <div className='mx-3'>
               <div className=''>
-                Siva
+                {userData.userName}
               </div>
              
             </div>

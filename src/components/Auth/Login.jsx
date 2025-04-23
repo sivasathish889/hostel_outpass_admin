@@ -1,12 +1,23 @@
 import { Button, TextField } from '@mui/material'
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IoSendOutline } from 'react-icons/io5'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { useAuth } from '../../context/AuthProvider'
 
 const Login = () => {
   const navigate = useNavigate()
+  const { isLogin,setRefresh, refresh } = useAuth()
+
+  useEffect(() => {
+    if (!isLogin) {
+      navigate("/login")
+    }
+    else {
+      navigate("/")
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -15,7 +26,8 @@ const Login = () => {
     try {
       await axios.post("/login", body).then((res) => {
         if (res.data.success) {
-          navigate('/')
+          setRefresh(!refresh)
+          navigate('/dashboard')
           localStorage.setItem('__adminUser', res.data.userID)
           toast.success(res.data.message, {
             position: "top-right",
