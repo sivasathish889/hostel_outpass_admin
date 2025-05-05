@@ -12,8 +12,8 @@ const PassList = () => {
     const [editOpen, setEditOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true)
     const [data, setData] = useState([])
-    const handleEditOpen = () => setEditOpen(true);
     const handleEditClose = () => setEditOpen(false);
+    const [refresh, setRefresh] = useState(false)
 
     const fetchData = async () => {
         try {
@@ -28,7 +28,7 @@ const PassList = () => {
     }
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [refresh])
 
     const handleDelete = async (id) => {
         swal({
@@ -44,6 +44,7 @@ const PassList = () => {
                     try {
                         await axios.delete(`/deletePass/${id}`).then((data) => {
                             if (data.data.success) {
+                                setRefresh(!refresh)
                                 toast.success(data.data.message, {
                                     position: "top-right",
                                     autoClose: 5000,
@@ -84,7 +85,7 @@ const PassList = () => {
                             <table className="min-w-full divide-y divide-gray-200 border">
                                 <thead className="bg-gray-200 ">
                                     <tr className=''>
-                                        {['No', "Register Number", "Student Name", "Room No", "Gender", "Warden", "Security", "Action"].map((el, index) => {
+                                        {['No', "Register Number", "Student Name", "Room No", "Gender", "Warden", "Security", "Status", "Action"].map((el, index) => {
                                             return <th
                                                 key={index}
                                                 scope="col"
@@ -116,10 +117,21 @@ const PassList = () => {
                                                     {items.Gender}
                                                 </td>
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap border  border-e-gray-200">
-                                                    {items.warden}
+                                                    {items.warden ? items.warden : "---"}
                                                 </td>
                                                 <td className="px-4 py-4 text-sm whitespace-nowrap border  border-e-gray-200">
-                                                    {items.security}
+                                                    {items.security ? items.security : "---"}
+                                                </td>
+                                                <td>
+                                                    {items.status === '1' ?
+                                                        <p className='text-orange-300 font-bold'>Pending</p> :
+                                                        items.status === "2" ?
+                                                            <p className='text-yellow-500 font-bold'>Approved</p> :
+                                                            items.status === "3" ?
+                                                                <p className='text-red-600 font-bold'>Rejected</p> :
+                                                                items.status === "completed" ?
+                                                                    <p className='text-green-600 font-bold'>Completed</p> :
+                                                                    ""}
                                                 </td>
 
                                                 <td className='flex justify-center items-center gap-3 px-4 py-4'>
@@ -138,7 +150,7 @@ const PassList = () => {
                     </div>
                 }
             </div>
-            <EditModal handleEditClose={handleEditClose} editOpen={editOpen} setEditOpen={setEditOpen}  />
+            {/* <EditModal handleEditClose={handleEditClose} editOpen={editOpen} setEditOpen={setEditOpen} /> */}
         </div>
     )
 }

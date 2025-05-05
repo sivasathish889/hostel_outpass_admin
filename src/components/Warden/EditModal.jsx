@@ -5,6 +5,7 @@ import swal from "sweetalert"
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import Loader from '../Common/Loader';
 
 const style = {
     position: 'absolute',
@@ -19,7 +20,7 @@ const style = {
 const EditModal = (props) => {
     const [loading, setLoading] = useState(false)
     const { handleEditClose, editOpen, editingHolderData, refresh, setRefresh } = props
-    const { userName, email, phoneNumber, role, _id } = editingHolderData
+    const { userName, email, phoneNumber, gender, _id } = editingHolderData
 
     const handleUpdate = (e) => {
         setLoading(true)
@@ -28,7 +29,7 @@ const EditModal = (props) => {
             userName: e.target.userName.value,
             email: e.target.email.value,
             phoneNumber: e.target.phoneNumber.value,
-            role: e.target.gender.value
+            gender: e.target.gender.value
         }
         swal({
             title: "Are you sure?",
@@ -101,7 +102,7 @@ const EditModal = (props) => {
                             </div>
                             <div className="flex gap-4 mt-4">
                                 <input type="text" name="phoneNumber"  className='border border-black px-2 py-2 text-sm focus:outline-primary rounded-lg placeholder:text-sm' placeholder='Phone Number' defaultValue={phoneNumber} onClick={handleTextSelect} />
-                                <select name="gender"  className='border border-black px-2 py-2 text-sm focus:outline-primary rounded-lg w-full placeholder:text-sm' defaultValue={role}>
+                                <select name="gender"  className='border border-black px-2 py-2 text-sm focus:outline-primary rounded-lg w-full placeholder:text-sm' defaultValue={gender}>
                                     <option value=" " >--Select Gender--</option>
                                     <option value="Male" >Male</option>
                                     <option value="Female">Female</option>

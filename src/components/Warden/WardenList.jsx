@@ -14,8 +14,8 @@ const WardenList = ({ searchQuery, genderQuery, refresh, setRefresh }) => {
   const [editingHolderData, setEditingHolderData] = useState({})
 
 
-  let handleEditOpen = (userName, email, phoneNumber, role, _id) => {
-    setEditingHolderData({ userName, email, phoneNumber, role, _id })
+  let handleEditOpen = (userName, email, phoneNumber, gender, _id) => {
+    setEditingHolderData({ userName, email, phoneNumber, gender, _id })
     setEditOpen(true)
   };
   const handleEditClose = () => {
@@ -124,7 +124,7 @@ const WardenList = ({ searchQuery, genderQuery, refresh, setRefresh }) => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 text-center">
-                  {filteredData.map(({ userName, email, phoneNumber, role, _id }, index) => {
+                  {filteredData.map(({ userName, email, phoneNumber, gender, _id }, index) => {
                     return <tr key={index}>
                       <td className="px-4 py-4 text-sm text-gray-800 whitespace-nowrap border  border-e-gray-200">
                         {index + 1}
@@ -140,10 +140,10 @@ const WardenList = ({ searchQuery, genderQuery, refresh, setRefresh }) => {
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-800 whitespace-nowrap border  border-e-gray-200">
 
-                        {role}
+                        {gender}
                       </td>
                       <td className='flex justify-center items-center gap-3 px-4 py-4'>
-                        <FaEdit color='green' size={18} className='cursor-pointer' onClick={() => handleEditOpen(userName, email, phoneNumber, role, _id)} />
+                        <FaEdit color='green' size={18} className='cursor-pointer' onClick={() => handleEditOpen(userName, email, phoneNumber, gender, _id)} />
                         <MdDelete color='red' size={18} className='cursor-pointer' onClick={() => handleDelete(_id)} />
                       </td>
                     </tr>

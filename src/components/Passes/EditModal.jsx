@@ -14,7 +14,7 @@ const style = {
     borderRadius: 3
 };
 const EditModal = (props) => {
-    const { handleEditClose, editOpen, setViewOpen } = props
+    const { handleEditClose, editOpen } = props
     const handleUpdate = () => {
         swal({
             title: "Are you sure?",

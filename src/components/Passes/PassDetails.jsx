@@ -1,5 +1,5 @@
-import{ useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useLocation, useNavigate,Link } from 'react-router-dom'
 import EditModal from './EditModal';
 import swal from "sweetalert"
 import axios from 'axios';
@@ -13,7 +13,6 @@ const PassDetails = () => {
   const handleEditClose = () => setEditOpen(false);
 
   const handleDelete = async (id) => {
-    console.log(id)
     swal({
       title: "Are you sure?",
       text: "Are you sure that you want to update the data?",
@@ -64,7 +63,6 @@ const PassDetails = () => {
       <div className="header flex justify-between bg-primary p-3 roundend-md sticky top-0">
         <div className="name text-xl text-white">{data.name}</div>
         <div className="action space-x-3">
-          {/* <button className='bg-green-700 text-white py-1 rounded-md px-6 border border-black cursor-pointer' onClick={handleEditOpen}>Edit </button> */}
           <button className='bg-red-800 text-white py-1 rounded-md px-6 border border-black cursor-pointer' onClick={() => handleDelete(data._id)}>Delete </button>
         </div>
       </div>
