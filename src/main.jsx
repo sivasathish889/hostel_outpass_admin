@@ -6,8 +6,8 @@ import axios from 'axios'
 import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from './context/AuthProvider.jsx'
 
-axios.defaults.baseURL = "http://localhost:5000/api/admin"
-// axios.defaults.baseURL = "https://hostal-outpass-backend.onrender.com/api/admin"
+// axios.defaults.baseURL = "http://localhost:5000/api/admin"
+axios.defaults.baseURL = "https://hostal-outpass-backend.onrender.com/api/admin"
 
 createRoot(document.getElementById('root')).render(
   <AuthProvider>
